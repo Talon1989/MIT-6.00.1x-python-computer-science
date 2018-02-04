@@ -1,27 +1,54 @@
 import numpy as np;
 import math as math
 import matplotlib as mm;
+import One as one;
 
-def javaDifferences ():
+
+def javaDifferences():
     num = 1;
     # can't use num++, ** for Math.pow(),
     num += 1; # 2
     num **= 3; # 8
     num = math.sqrt(num+1);
     print(num);
-    return;
+
+    # PRINT
+    print("hello"+"world");
+    print("hello", "world"); # ',' means +' '+
+
+    # ARRAY
+    potato = "potato";
+    potato[:2]; # 'po'
+    potato[1:3]; # 'ot'
+    potato[::2]; # skips 2 start from 0 'ptt'
+    potato[1::2]; # skips 2 start from 1 'oao'
+    print(potato[1:]) # 'otato'
+
+    # CASTING
+    x = 1; # int
+    x_str = str(x); # equivalent of (String) x
+    print(type(x_str));
+
+    # INPUT
+    try:
+        my_variable = input("Type anything..."); # input = new Scanner(System.in).nextLine();
+        my_int_variable = int(input("Type a number")); # casts into an int, Integer.parseInt();
+        print(my_int_variable);
+    except ValueError:
+        print("Count not convert data to integer");
 
 
-def findNum (num: int, arr, startNum: int, endNum: int):
+
+def findNum(num: int, arr, startNum: int, endNum: int):
     mid = (startNum+endNum) // 2;
     print("start: "+str(startNum)+" / end: "+str(endNum));
     print("mid: "+str(mid)+" / number at mid: "+str(arr[mid])+" / number to find: "+str(num));
     if num == arr[mid]:
         print("should yes")
-        return "yes";
+        return True;
     elif startNum == endNum or startNum == endNum-1 or startNum == endNum+1:
         print("should exit");
-        return "no";
+        return False;
     elif num < arr[mid]:
         print("LESS : current "+str(arr[mid])+" / want: "+str(num));
         findNum(num, arr, startNum, mid);
@@ -29,10 +56,10 @@ def findNum (num: int, arr, startNum: int, endNum: int):
         print("MORE : current "+str(arr[mid])+" / want: "+str(num));
         findNum(num, arr, mid, endNum);
     print("noff");
-    return "no";
+    return;
 
 
-# a = np.arange(15).reshape(3, 5);
-# javaDifferences();
-arr = [0,2,4,6,8,10,12,14,16];
-print(findNum(12, arr, 0, len(arr)));
+# arr = [0,2,4,6,8,10,12,14,16];
+# print(findNum(12, arr, 0, len(arr)));
+a = np.arange(15).reshape(3, 5);
+javaDifferences();
