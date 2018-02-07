@@ -1,7 +1,8 @@
 import numpy as np;
 import math as math
 import matplotlib as mm;
-import One as one;
+
+import CourseAlgorithms
 
 
 def javaDifferences():
@@ -68,7 +69,23 @@ def findNum(num: int, arr, startNum: int, endNum: int):
     return;
 
 
+def alpha (s):
+    temp_count = 0; total_count = 0; last_position = 0;
+    for i in range(len(s)-1):
+        if s[i] <= s[i+1]:
+            if temp_count > total_count:
+                total_count = temp_count;
+                last_position = i+1;
+            temp_count += 1;
+        else:
+            temp_count = 0;
+    start_postion = last_position-total_count;
+    print("longest alphabetical word :", s[start_postion:last_position+1])
+
 # arr = [0,2,4,6,8,10,12,14,16];
 # print(findNum(12, arr, 0, len(arr)));
 a = np.arange(15).reshape(3, 5);
-javaDifferences();
+alpha_string = "abcdaacdefghabd";
+alpha(alpha_string);
+print("iterating ...");
+CourseAlgorithms.approximationCubeRoot(29);

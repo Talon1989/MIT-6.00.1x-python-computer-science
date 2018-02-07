@@ -45,4 +45,15 @@ def findPerfectSquare(number):
         print(str(number), "is not a perfect square");
 
 
-findPerfectSquare(25);
+def approximationCubeRoot(cube):
+    epsilon = 0.01; guess = 0.0; increment = 0.001; count = 0;
+    while abs(guess**3 - cube) >= epsilon and guess**2 <= cube:
+        guess += increment;
+        count += 1;
+    print("number of guesses: "+str(count));
+    if abs(guess**3 - cube) >= epsilon:
+        print("Failed.");
+    else:
+        print(guess, "is closest to cube root of", cube);
+
+
