@@ -82,10 +82,4 @@ def alpha (s):
     start_postion = last_position-total_count;
     print("longest alphabetical word :", s[start_postion:last_position+1])
 
-# arr = [0,2,4,6,8,10,12,14,16];
-# print(findNum(12, arr, 0, len(arr)));
-a = np.arange(15).reshape(3, 5);
-alpha_string = "abcdaacdefghabd";
-alpha(alpha_string);
-print("iterating ...");
-CourseAlgorithms.approximationCubeRoot(29);
+CourseAlgorithms.bisectionEx();

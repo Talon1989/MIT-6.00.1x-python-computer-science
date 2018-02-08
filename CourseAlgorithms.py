@@ -57,3 +57,37 @@ def approximationCubeRoot(cube):
         print(guess, "is closest to cube root of", cube);
 
 
+def bisectionSearch(x):
+    epsilon = 0.01; numGuesses = 0;
+    low = 1.0; high = x;
+    ans = (high + low) / 2.0;
+    while abs(ans**2 - x) >= epsilon:
+        print("low = "+str(low)+" / high = "+str(high)+" / answer: "+str(ans));
+        numGuesses += 1;
+        if ans**2 < x:
+            low = ans;
+        else:
+            high = ans;
+        ans = (high + low) / 2.0;
+    print("Number of guesses : "+str(numGuesses));
+    print("Closest square root of "+str(x)+" : "+str(ans));
+
+
+def bisectionEx():
+    print("Please think of a number between 0 and 100!")
+    low = 0
+    high = 100
+    while True:
+        guess = (low + high) // 2
+        print("Is your secret number "+str(guess)+"?")
+        response = input("Enter 'h' to indicate the guess is too high. Enter 'l' to indicate the guess is too low. Enter 'c' to indicate I guessed correctly.")
+        if response != 'h' and response != 'l' and response != 'c':
+            print("Sorry, I did not understand your input.")
+        elif response == 'h':
+            high = guess
+        elif response == 'l':
+            low = guess
+        elif response == 'c':
+            print("Game over. Your secret number was: "+str(guess))
+            break
+
