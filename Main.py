@@ -115,7 +115,4 @@ def recursionMultiplication(num, times):
 print(CourseAlgorithms.evalQuadratic(2, 2, 2, 2));
 # Changed the order of arguments, in python we can define them when calling functions
 print(CourseAlgorithms.evaluate(y=1, x=10));
-
-print(CourseAlgorithms.fibonacci(5));
-print(CourseAlgorithms.oldFibonacci(0, 1, 5));
-print(CourseAlgorithms.isPalindrome("a"));
+print(ExerciseAlgo.isIn('h', 'abcdefglz'));

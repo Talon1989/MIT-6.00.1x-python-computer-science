@@ -135,7 +135,7 @@ def oldFibonacci(a, b, times):
 
 
 def isPalindrome(text):
-    if len(text) == 0 or len(text) == 1:
+    if len(text) <= 1:
         return True;
     elif text[0] == text[len(text)-1]:
         return isPalindrome(text[1:len(text)-1]);
