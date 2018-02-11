@@ -69,7 +69,10 @@ def findNum(num: int, arr, startNum: int, endNum: int):
     return;
 
 
-def alpha (s):
+def alpha(s):
+    """
+    documentation
+    """
     temp_count = 0; total_count = 0; last_position = 0;
     for i in range(len(s)-1):
         if s[i] <= s[i+1]:
@@ -82,4 +85,34 @@ def alpha (s):
     start_postion = last_position-total_count;
     print("longest alphabetical word :", s[start_postion:last_position+1])
 
-CourseAlgorithms.bisectionEx();
+
+def fourthPower(x):
+    '''
+    x: int or float.
+    '''
+    def banana(x):
+        def potato(x):
+            return x*x;
+        return x*potato(x);
+    return x*banana(x);
+
+
+def iterativeMultiplication(num, times):
+    result = 0;
+    while times > 0:
+        result += num;
+        times -= 1;
+    return result;
+
+
+def recursionMultiplication(num, times):
+    if times <= 1:
+        return num;
+    return num + recursionMultiplication(num, times-1);
+
+
+print(CourseAlgorithms.evalQuadratic(2, 2, 2, 2));
+# Changed the order of arguments, in python we can define them when calling functions
+print(CourseAlgorithms.evaluate(y=1, x=10));
+
+print(recursionMultiplication(5, 3));

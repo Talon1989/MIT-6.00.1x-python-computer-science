@@ -91,3 +91,33 @@ def bisectionEx():
             print("Game over. Your secret number was: "+str(guess))
             break
 
+
+def binaryFloats(x):
+    isNeg = False;
+    if x < 0:
+        x = abs(x);
+        isNeg = True;
+    result = '';
+    if x == 0:
+        result = '0';
+    while x > 0:
+        result = str(x % 2) + result;
+        x //= 2;
+    if isNeg:
+        result = '-' + result;
+    return result;
+
+
+def evalQuadratic(a, b, c, x):
+    '''
+    a, b, c: numerical values for the coefficients of a quadratic equation
+    x: numerical value at which to evaluate the quadratic.
+    '''
+    return a*(x**2)+b*x+c;
+
+
+def evaluate(x, y, flag=False):   # In python we can bind variables inside args, don't need to call it
+    if not flag:
+        return x >= y;
+
+
