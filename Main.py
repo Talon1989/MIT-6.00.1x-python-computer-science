@@ -3,6 +3,7 @@ import math as math
 import matplotlib as mm;
 
 import CourseAlgorithms
+import ExerciseAlgo
 
 
 def javaDifferences():
@@ -115,4 +116,6 @@ print(CourseAlgorithms.evalQuadratic(2, 2, 2, 2));
 # Changed the order of arguments, in python we can define them when calling functions
 print(CourseAlgorithms.evaluate(y=1, x=10));
 
-print(recursionMultiplication(5, 3));
+print(CourseAlgorithms.fibonacci(5));
+print(CourseAlgorithms.oldFibonacci(0, 1, 5));
+print(CourseAlgorithms.isPalindrome("a"));

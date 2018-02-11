@@ -121,3 +121,25 @@ def evaluate(x, y, flag=False):   # In python we can bind variables inside args,
         return x >= y;
 
 
+def fibonacci(a):
+    # print(a)
+    if a == 1 or a == 0:
+        return 1;
+    return fibonacci(a-1) + fibonacci(a-2);
+
+
+def oldFibonacci(a, b, times):
+    if times == 0:
+        return b;
+    return oldFibonacci(b, a+b, times-1);
+
+
+def isPalindrome(text):
+    if len(text) == 0 or len(text) == 1:
+        return True;
+    elif text[0] == text[len(text)-1]:
+        return isPalindrome(text[1:len(text)-1]);
+    else:
+        return False;
+
+
