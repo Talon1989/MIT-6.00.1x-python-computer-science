@@ -141,5 +141,3 @@ def isPalindrome(text):
         return isPalindrome(text[1:len(text)-1]);
     else:
         return False;
-
-

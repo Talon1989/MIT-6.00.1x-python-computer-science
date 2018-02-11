@@ -112,7 +112,25 @@ def recursionMultiplication(num, times):
     return num + recursionMultiplication(num, times-1);
 
 
+def outputStream():
+    nameHandle = open('text.txt', 'r');
+    for line in nameHandle:
+        print(line);
+    nameHandle.close();
+
+
+def inputStream():
+    nameHandle = open('text.txt','w');
+    for i in range(2):
+        nameHandle.write(input('Write...')+"\n");
+    nameHandle.close();
+
+
 print(CourseAlgorithms.evalQuadratic(2, 2, 2, 2));
 # Changed the order of arguments, in python we can define them when calling functions
 print(CourseAlgorithms.evaluate(y=1, x=10));
 print(ExerciseAlgo.isIn('h', 'abcdefglz'));
+
+
+
+
