@@ -127,11 +127,6 @@ def inputStream():
     nameHandle.close();
 
 
-print(CourseAlgorithms.evalQuadratic(2, 2, 2, 2));
 # Changed the order of arguments, in python we can define them when calling functions
 print(CourseAlgorithms.evaluate(y=1, x=10));
-print(PolygonsAssignment.polysum(5, 3));
-
-
-
 
