@@ -1,3 +1,6 @@
+import cmath
+
+
 def findnum(num, arr):
     if len(arr) == 1:
         if num == arr[0]:
@@ -22,6 +25,7 @@ def quotientAndRemainder(x, y):
 
 
 def get_data(aTuple):
+    someTuple = (1, True, 'banana')
     nums = (); words = ();  # instantiation of tuple
     for t in aTuple:
         nums = nums + (t[0],)
@@ -30,7 +34,69 @@ def get_data(aTuple):
     return largest, nums, words
 
 
-q, r = quotientAndRemainder(13, 5)
-t = ((1, "one"), (2, "two"), (5, "banana"), (3, "car"))
-large, numbers, words = get_data(t)
-print(large, words)
+# LIST IS MUTABLE
+def lists():
+    a_list = ['a list']
+    b_list = [2, 'a', 4, True]
+    print(b_list[3])
+    b_list[3] = False
+    print(b_list[3])
+    b_list.append('potato') # doesn't mutate
+    print(b_list)
+    c_list = a_list + b_list
+    c_list.extend([3, 5, 8]) # mutates
+    print(c_list)
+    s = 'abcd'
+    d_list = list(s)
+    print(d_list)
+    print(s.split('c'))
+    print('_'.join(s))
+
+
+def listAliases():
+    warm = ['red', 'yellow', 'orange']
+    hot = warm # this means same object, points to the same memory block
+    print(hot)
+    warm.append('pink')  # hot[0] automatically becomes 'pink'
+    print(hot)
+    cool = ['blue', 'green', 'grey']
+    chill = cool[:] # this means a copy, not the same object
+    cool.append('black')
+    print(chill)
+
+
+def removeDuplicates(list1, list2):
+    list1_copy = list1[:] # this makes sure when i remove it can still loop properly
+    for e in list1_copy:
+        if e in list2:
+            list1.remove(e)
+
+
+def applyToEach(l, func):
+    '''
+    :param l: a list
+    :param func: a function
+    :return: mutates l by replacing each element, e, of l by func(e)
+    '''
+    for i in range(len(l)):
+        l[i] = func(l[i])
+
+
+# similar to the 'map' function
+def applyFunctions(listOfFunc, num):
+    '''
+    :param listOfFunc: a list of functions
+    :param num: a single number
+    :return: prints the num after it has been called by the listOfFunc
+    '''
+    for f in listOfFunc:
+        print(f(num))
+
+
+l = [1, -2, 3.4]
+print(l)
+applyToEach(l, abs) # i'm passing the function itself abs, not the calling abs()
+print(l)
+applyFunctions([abs, cmath.sqrt], -16)
+for i in map(abs, [1, -2, 3, -4, 5, -6]): # map returns an iterable, not a list
+    print(i)
