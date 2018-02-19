@@ -93,10 +93,26 @@ def applyFunctions(listOfFunc, num):
         print(f(num))
 
 
+# DICTIONARY, behaves like maps in java
+def python_dictionaries():
+    my_dict = {}
+    grades = {'Ana': 'B', 'John': 'A+', 'Denise': 'A', 'Katy': 'A'}
+    print(grades.get('Ana')) # B
+    print(grades['Ana']) # B
+    grades['Talon'] = 'C' # adding new key and value to the dictionary 'grades'
+    print(grades['Talon'])
+    del grades['Talon'] # removed entry for 'Talon'
+    print('Talon' in grades)
+    print(grades); print(grades.keys()); print(grades.values())
+    # dictionaries keys must be immutable, values of any type
+    d = {4: {1: 0}, (1, 3): "twelve", "const": [3.14, 2.7, 6.67]}
+
+
 l = [1, -2, 3.4]
 print(l)
 applyToEach(l, abs) # i'm passing the function itself abs, not the calling abs()
 print(l)
 applyFunctions([abs, cmath.sqrt], -16)
-for i in map(abs, [1, -2, 3, -4, 5, -6]): # map returns an iterable, not a list
-    print(i)
+for a in map(abs, [1, -2, 3, -4, 5, -6]): # map returns an iterable, not a list
+    print(a)
+python_dictionaries();
