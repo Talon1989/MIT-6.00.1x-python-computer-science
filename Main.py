@@ -121,7 +121,7 @@ def outputStream():
 
 
 def inputStream():
-    nameHandle = open('text.txt','w');
+    nameHandle = open('text.txt', 'w');
     for i in range(2):
         nameHandle.write(input('Write...')+"\n");
     nameHandle.close();
