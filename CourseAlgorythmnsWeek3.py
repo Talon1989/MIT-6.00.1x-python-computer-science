@@ -108,6 +108,66 @@ def python_dictionaries():
     d = {4: {1: 0}, (1, 3): "twelve", "const": [3.14, 2.7, 6.67]}
 
 
+def lyricsToFrequency(lyrics):
+    '''
+    :param lyrics: array of words
+    :return: dictionary of words mapped to frequency
+    '''
+    myDict = {}
+    for word in lyrics:
+        if word in myDict:
+            myDict[word] += 1
+        else:
+            myDict[word] = 1
+    return myDict
+
+
+def mostCommonWords(dictionary):
+    '''
+    :param dict: dictionary of words, mapped to frequency
+    :return: most common word with its frequency, using list in case of multiple words with same max frequency
+    '''
+    values = dictionary.values()
+    best = max(values)
+    words = []
+    for k in dictionary:
+        if best == dictionary[k]:
+            words.append(k)
+    return words, best
+
+
+def wordsOften(dictionary, times):
+    words = []
+    flag = False
+    while not flag:
+        if len(dictionary) < 1:
+            break
+        temp = mostCommonWords(dictionary)
+        if temp[1] >= times:
+            words.append(temp)
+            for w in temp[0]:
+                del dictionary[w]
+        else:
+            flag = True
+    return words
+
+
+def efficientFibonacci(n, d):
+    '''
+    :param n: number of iteration of fibonacci
+    :param d: dictionary with basic values {1:1, 2:2}
+    :return: n-th iteration of fibonacci
+    '''
+    global numFibCalls # takes a variable from global scope (if defined)
+    numFibCalls += 1
+    if n in d:
+        return d[n]
+    else:
+        ans = efficientFibonacci(n-1, d) + efficientFibonacci(n-2, d)
+        d[n] = ans # saved for future iterations
+        return ans
+
+
 l = [1, -2, 3.4]
 print(l)
 applyToEach(l, abs) # i'm passing the function itself abs, not the calling abs()
@@ -115,4 +175,7 @@ print(l)
 applyFunctions([abs, cmath.sqrt], -16)
 for a in map(abs, [1, -2, 3, -4, 5, -6]): # map returns an iterable, not a list
     print(a)
-python_dictionaries();
+frequency = lyricsToFrequency(['she', 'loves', 'you', 'yeah', 'yeah', 'yeah'])
+print(wordsOften(frequency, 1))
+numFibCalls = 0
+print(efficientFibonacci(6, {1: 1, 2: 2}), numFibCalls)
