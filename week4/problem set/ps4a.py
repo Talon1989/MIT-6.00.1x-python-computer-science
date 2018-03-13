@@ -46,7 +46,7 @@ def getFrequencyDict(sequence):
     # freqs: dictionary (element_type -> int)
     freq = {}
     for x in sequence:
-        freq[x] = freq.get(x,0) + 1
+        freq[x] = freq.get(x, 0) + 1  # dictionary.get(x,def) if x doesn't exists returns the def
     return freq
 	
 
@@ -124,7 +124,7 @@ def dealHand(n):
         x = VOWELS[random.randrange(0,len(VOWELS))]
         hand[x] = hand.get(x, 0) + 1
         
-    for i in range(numVowels, n):    
+    for i in range(numVowels, n):
         x = CONSONANTS[random.randrange(0,len(CONSONANTS))]
         hand[x] = hand.get(x, 0) + 1
         
@@ -149,7 +149,14 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    hand2 = hand.copy()
+    for w in word:
+        if hand2.get(w, 0) > 0:
+            hand2[w] -= 1
+            # if hand2[w] < 1:
+            #     del hand2[w]
+    return hand2
+
 
 
 
@@ -167,7 +174,17 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    if word in wordList:
+        hand2 = hand.copy()
+        for w in word:
+            if hand2.get(w, 0) > 0:
+                hand2[w] -= 1
+            else:
+                return False
+        return True
+    else:
+        return False
+
 
 
 #
@@ -266,6 +283,6 @@ if __name__ == '__main__':
     wordList = loadWords()
     playGame(wordList)
 
+    #test
+    print(isValidWord('potato', {'p':2, 'o':2, 't': 2, 'a':1}, wordList))
 
-# test
-getWordScore('pasta', 7)
