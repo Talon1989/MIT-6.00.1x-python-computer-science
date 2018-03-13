@@ -51,3 +51,7 @@ animals = {'a': ['alupa'], 'b': ['baboon'], 'c': ['coati', 'cat']}
 print(courseBiggest(animals))
 
 
+tup1 = 1
+tup2 = 2
+tup1, tup2 = tup2, tup1
+print(tup1, tup2)
