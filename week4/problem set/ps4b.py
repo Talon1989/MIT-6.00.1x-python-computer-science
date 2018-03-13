@@ -78,7 +78,7 @@ def compPlayHand(hand, wordList, n):
             break
             
         # Otherwise (the input is not a single period):
-        else :
+        else:
             # If the word is not valid:
             if (not isValidWord(word, hand, wordList)) :
                 print('This is a terrible error! I need to check my own code!')
@@ -124,9 +124,43 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
-
+    currentHand = {}
+    while True:
+        option = input("Enter n to deal a new hand, r to replay the last hand, or e to end game:")
+        if option == 'e':
+            break
+        else:
+            if option != 'n' and option != 'r':
+                print("Invalid command.")
+            elif option == 'n':
+                option2 = ''
+                while option2 != 'u' and option2 != 'c':
+                    option2 = input("Enter u to have yourself play, c to have the computer play:")
+                    if option2 == 'u':
+                        currentHand = dealHand(HAND_SIZE)
+                        playHand(currentHand, wordList, HAND_SIZE)
+                        break
+                    elif option2 == 'c':
+                        currentHand = dealHand(HAND_SIZE)
+                        compPlayHand(currentHand, wordList, HAND_SIZE)
+                        break
+                    else:
+                        print('Invalid command.')
+            elif option == 'r':
+                if not currentHand: # returns True if dictionary empty
+                    print("You have not played a hand yet. Please play a new hand first!")
+                else:
+                    option2 = ''
+                    while option2 != 'u' and option2 != 'c':
+                        option2 = input("Enter u to have yourself play, c to have the computer play:")
+                        if option2 == 'u':
+                            playHand(currentHand, wordList, HAND_SIZE)
+                            break
+                        elif option2 == 'c':
+                            compPlayHand(currentHand, wordList, HAND_SIZE)
+                            break
+                        else:
+                            print('Invalid command.')
         
 #
 # Build data structures used for entire session and play game
