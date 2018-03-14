@@ -64,6 +64,30 @@ class Fraction:
               - other.getNumerator()*self.getDenominator()
         den = other.getDenominator()*self.getDenominator()
         return Fraction(num, den)
+    def convert(self):
+        return self.getNumerator() / self.getDenominator()
+
+
+class IntSet:
+    def __init__(self):
+        self.vals = []
+    def insert(self, e):
+        if not e in self.vals:
+            self.vals.append(e)
+    def isPresent(self, e):
+        return e in self.vals
+    def remove(self, e):
+        try:
+            self.vals.remove(e)
+        except:
+            raise ValueError(str(e)+' not present in the list')
+    def __str__(self):
+        self.vals.sort()
+        result = ''
+        for e in self.vals:
+            result = result + str(e) + ','
+        result = result[:-1] # remove last ','
+        return '{' + result + '}'
 
 
 
@@ -85,3 +109,9 @@ twoThirds = Fraction(2, 3)
 print(oneHalf)
 print(Fraction.getNumerator(twoThirds))
 print(Fraction.__sub__(oneHalf, twoThirds))
+print()
+
+s = IntSet()
+s.insert(3); s.insert(4); s.insert(3)
+print(s)
+print(s.isPresent(5))
