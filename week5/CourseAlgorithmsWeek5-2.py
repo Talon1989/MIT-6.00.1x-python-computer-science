@@ -48,16 +48,104 @@ class MitPerson(Person):
         return self.id < other.id
 
     def speak(self, word):
-        return self.getLastName() + ' says: ' + word
+        return self.name + ' says: ' + word
 
     def __str__(self):
         return self.name + 'id: ' + str(self.id)
+
+
+class Student(MitPerson):
+    pass
+
+
+class UG(Student):
+    def __init__(self, name, year):
+        MitPerson.__init__(self, name)
+        self.classYear = year
+    def speak(self, word):
+        return MitPerson.speak(self, 'Dude: ' + word)
+
+
+class Grad(Student):
+    pass
+
+
+class TransferStudent(Student):
+    pass
+
+
+class Professor(MitPerson):
+    def __init__(self, name, department):
+        MitPerson.__init__(self, name)
+        self.department = department
+    def speak(self, word):
+        phrase = 'In course ' + self.department + 'we say: ' + word
+        return MitPerson.speak(self, phrase)
+    def lecture(self, topic):
+        return self.speak('it is obvious that ' + topic)
+
+
+def isStudent(obj):
+    # isinstance checks also the parent unlike 'type()'
+    return isinstance(obj, Student)
+
+
+class Grades:
+    def __init__(self):
+        self.students = []
+        self.grades = {}
+        self.isSorted = True
+    def addStudent(self, student):
+        assert isinstance(student, Student)
+        if student in self.students:
+            raise ValueError(student, 'is duplicate.')
+        self.students.append(student)
+        self.grades[student.getId()] = []
+        self.isSorted = False
+    def addGrade(self, student, grade):
+        try:
+            self.grades[student.getId()].append(grade)
+        except KeyError:
+            raise ValueError('Student not in grades')
+    def getGrades(self, student):
+        try:
+            return self.grades[student.getId()][:]
+        except KeyError:
+            raise ValueError('Student not in grades')
+    def allStudents(self):
+        if not self.isSorted:
+            self.students.sort()
+            self.isSorted = True
+        return self.students[:]
+
 
 
 def printList(lista):
     assert type(lista) is list
     for l in lista:
         print(l)
+
+
+def gradeReport(course):
+    assert isinstance(course, Grades)
+    report = []
+    for s in course.allStudents():
+        tot = 0.0; counter = 0;
+        for g in course.getGrades(s):
+            tot += g
+            counter += 1
+            print(counter)
+        try:
+            avg = tot / counter
+            report.append('student:'+str(s)+': has an mean grade of '+str(avg))
+        except ZeroDivisionError:
+            report.append('student:'+str(s)+': has no grades')
+    return '\n'.join(report)
+
+
+def genTest():
+    yield 1
+    yield 2
 
 
 p1 = Person('Mark Zuckerberg')
@@ -79,3 +167,21 @@ mit1 = MitPerson('Mark')
 mit2 = MitPerson('Luke')
 mit3 = MitPerson('Tony')
 print(mit1 < mit2)
+print(isinstance(mit1, Person))
+
+grad = Grades()
+mark = UG('Mark Lenn', 2018)
+grad.addStudent(mark)
+Grades.addGrade(grad, mark, 8.9)
+Grades.addGrade(grad, mark, 9.2)
+print(grad.getGrades(mark))
+print(gradeReport(grad))
+
+generator = genTest()
+print(generator)
+print(generator.__next__())
+print(generator.__next__())
+print()
+gen2 = genTest()
+for y in gen2:
+    print(y)
