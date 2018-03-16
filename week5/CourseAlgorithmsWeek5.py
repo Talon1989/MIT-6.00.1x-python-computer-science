@@ -1,4 +1,5 @@
 # CLASSES
+import random
 
 
 class MyClass:
@@ -115,3 +116,93 @@ s = IntSet()
 s.insert(3); s.insert(4); s.insert(3)
 print(s)
 print(s.isPresent(5))
+
+
+# INHERITANCE
+
+class Animal(object):
+
+    def __init__(self, age):
+        self.age = age
+        self.name = None
+
+    def getAge(self):
+        return self.age
+    def getName(self):
+        return self.name
+    def setAge(self, age):
+        self.age = age
+    def setName(self, name):
+        self.name = name
+
+    def __str__(self):
+        return "animal:"+str(self.name)+":"+str(self.age)
+
+
+class Cat(Animal):
+    def speak(self):
+        print('meow')
+    def __str__(self):
+        return "cat:"+str(self.name)+":"+str(self.age)
+
+
+class Rabbit(Animal):
+    tag = 0 # static counter
+    def __init__(self, age):
+        Animal.__init__(self, age)
+        Rabbit.tag += 1
+        self.id = Rabbit.tag
+    def speak(self):
+        print('meep')
+    def __str__(self):
+        return "rabbit:" + str(self.name) + ":" + str(self.age)
+
+
+class Person(Animal):
+    def __init__(self, name, age):
+        Animal.__init__(self, age)
+        Animal.setName(self, name)
+        self.friends = []
+    def getFriends(self):
+        return self.friends
+    def addFriend(self, fname):
+        if fname not in self.friends:
+            self.friends.append(fname)
+    def speak(self):
+        print('hello')
+    def age_diff(self, other):
+        diff = self.getAge() - other.getAge()
+        if diff < 0:
+            print(self.name, 'is', abs(diff), 'younger than', other.name)
+        else:
+            print(self.name, 'is', diff, 'older than', other.name)
+    def __str__(self):
+        return 'person:'+str(self.name)+":"+str(self.age)
+
+
+class Student(Person):
+    def __init__(self, name, age, major=None):
+        Person.__init__(self, name, age)
+        self.major = major
+    def changeMajor(self, major):
+        self.major = major
+    def speak(self):
+        r = random.randint(0, 15)
+        print('i need sleep, '+str(r))
+    def __str__(self):
+        return 'student:' + str(self.name) + ":" + str(self.age) + ":" + str(self.major)
+
+
+jelly = Cat(1)
+jelly.setName('JellyBelly')
+print(jelly)
+print(Animal.__str__(jelly))
+p1 = Person('Mark', 30)
+p2 = Person('Lucas', 42)
+p1.age_diff(p2)
+st1 = Student('Tony', 22, 'Telecomunication')
+print(st1)
+st1.speak()
+rab1 = Rabbit(2); rab2 = Rabbit(1); rab3 = Rabbit(2);
+print(Rabbit.tag)
+print(rab2.id)
