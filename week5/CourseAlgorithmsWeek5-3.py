@@ -1,5 +1,4 @@
 def genFibonacci(numbers):
-    print('inside')
     assert isinstance(numbers, int)
     if numbers < 1:
         raise Exception('number arg needs to be an int higher than 0')
