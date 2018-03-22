@@ -32,8 +32,59 @@ class Beer(Drink):
         Drink.__init__(self, name, abv)
 
 
-birraMoretti = Beer('moretti', 5)
-print(birraMoretti.getName(), ' / ', birraMoretti.getAbv())
-print(birraMoretti.isAlcoholic())
-acqua = Water()
-print(acqua.isAlcoholic())
+def bubbleSort(L):
+    clean = False
+    while not clean:
+        clean = True
+        for i in range(1, len(L)):
+            if L[i-1] > L[i]:
+                L[i-1], L[i] = L[i], L[i-1]
+                clean = False
+
+def selectionSort(L):
+    for a in range(len(L)):
+        min = a
+        for b in range(a, len(L)):
+            if L[b] < L[min]:
+                min = b
+        L[min], L[a] = L[a], L[min]
+
+def mergeSort(L):
+    if len(L) < 2:
+        return L[:]
+    def merge(left, right):
+        result = []
+        l, r = 0, 0
+        while l < len(left) and r < len(right):
+            if left[l] < right[r]:
+                result.append(left[l])
+                l += 1
+            else:
+                result.append(right[r])
+                r += 1
+        if l < len(left):
+            result.extend(left[l:])
+        if r < len(right):
+            result.extend(right[r:])
+        return result
+    mid = len(L) // 2
+    lleft = mergeSort(L[:mid])
+    rright = mergeSort(L[mid:])
+    return merge(lleft, rright)
+
+
+def meth(a = 'a', b = 'b', c = 'c'):
+    print(a,b,c)
+
+meth(b='asd')
+
+
+# birraMoretti = Beer('moretti', 5)
+# print(birraMoretti.getName(), ' / ', birraMoretti.getAbv())
+# print(birraMoretti.isAlcoholic())
+# acqua = Water()
+# print(acqua.isAlcoholic())
+ll = ['hotel', 'alpha', 'lima', 'india', 'charlie', 'zulu', 'bravo', '123']
+ll = mergeSort(ll)
+print(ll)
+
