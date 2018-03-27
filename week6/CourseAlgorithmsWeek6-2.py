@@ -62,6 +62,7 @@ def bubble_sort(L):
     swapped = True
     while swapped: # keep redoing it from start until no swap = sorted
         swapped = False
+        # print(L)
         for j in range(1, len(L)):
             if L[j-1] > L[j]:
                 swapped = True
@@ -126,7 +127,8 @@ def merge(left, right):
 
 # print(my_bisection_search([1,2,3,5,8,11], 2))
 # print(bogo_sort([5,6,1,2,5,8,15,99,7,159,111,55,9]))
-lista = [2,1,5,9,15,66,55,158,11,3]
-lista = merge_sort(lista)
+lista = [22,66,88,500,2,1,5,9,15,66,55,158,11,3]
+# lista = merge_sort(lista)
+bubble_sort(lista)
 print(lista)
 
