@@ -1,5 +1,7 @@
 from enum import Enum
 
+from math import tan, pi
+
 
 class Animal:
     def __init__(self, name):
@@ -90,6 +92,16 @@ def mergeSort(L):
     right = mergeSort(L[mid:])
     return merge(left, right)
 
+def polysum(n, s):
+    '''
+    :param n: number of sides
+    :param s: lenght of each side
+    :return: area of polygon + square of perimeter of polygon
+    '''
+    area = (0.25*n*(s**2)) / tan(pi/n)
+    perimeterSquared = (n*s)**2
+    return round(area + perimeterSquared, 4)
+
 
 buzuzu = Primate('buzuzu', Type.APE)
 buzuzu.setAge(12)
@@ -99,3 +111,5 @@ numbers = [56, 22, 16, 99, 5, 11, 76, 33, 69, 81, 7]
 print(numbers)
 numbers = mergeSort(numbers)
 print(numbers)
+
+print(polysum(76, 47))
